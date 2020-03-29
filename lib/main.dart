@@ -92,63 +92,85 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Personal Expanses',
-          style: TextStyle(
-            fontFamily: 'QuickSand',
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
+    final AppBar appBar = AppBar(
+      title: Text(
+        'Personal Expanses',
+        style: TextStyle(
+          fontFamily: 'QuickSand',
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              modalAddTransaction(context);
-            },
-          ),
-        ],
       ),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () {
+            modalAddTransaction(context);
+          },
+        ),
+      ],
+    );
+
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            // Chart
             Container(
+              // Note: 0.4 merupakan skala 40% dari total 100%
+              // 1. Ketinggian Total Layar Ponsel
+              // 2. ketinggian Status bar ponsel ( signal, baterai, dll)
+              // 3. ketinggian Appbar
+              height: (MediaQuery.of(context).size.height -
+                      MediaQuery.of(context).padding.top -
+                      appBar.preferredSize.height) *
+                  0.4,
               width: double.infinity,
               child: Chart(_recentTransaction),
             ),
-            
-            transactions.isEmpty
-                ? Column(
-                    children: <Widget>[
-                      Text(
-                        'No Data',
-                        style: Theme.of(context).textTheme.title,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        width: 100,
-                        child: Image.asset(
-                          'assets/images/waiting.png',
-                          fit: BoxFit.cover,
+            // End Chart
+
+            // Transaction List
+            Container(
+              height: (MediaQuery.of(context).size.height -
+                      MediaQuery.of(context).padding.top -
+                      appBar.preferredSize.height) *
+                  0.6,
+              child: transactions.isEmpty
+                  ? Column(
+                      children: <Widget>[
+                        Text(
+                          'No Data',
+                          style: Theme.of(context).textTheme.title,
                         ),
-                      ),
-                    ],
-                  )
-                : TransactionList(
-                    transactions: transactions,
-                    deleteTrx: _deleteTrx,
-                  ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: 100,
+                          child: Image.asset(
+                            'assets/images/waiting.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ],
+                    )
+                  : TransactionList(
+                      transactions: transactions,
+                      deleteTrx: _deleteTrx,
+                    ),
+            ),
+            // End Transaction List
           ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () { return _addTransaction; },
+        onPressed: () {
+          return _addTransaction;
+        },
         child: Icon(Icons.add),
       ),
     );
