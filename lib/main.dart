@@ -126,7 +126,7 @@ class _HomeState extends State<Home> {
               height: (MediaQuery.of(context).size.height -
                       MediaQuery.of(context).padding.top -
                       appBar.preferredSize.height) *
-                  0.4,
+                  0.3,
               width: double.infinity,
               child: Chart(_recentTransaction),
             ),
@@ -137,7 +137,7 @@ class _HomeState extends State<Home> {
               height: (MediaQuery.of(context).size.height -
                       MediaQuery.of(context).padding.top -
                       appBar.preferredSize.height) *
-                  0.6,
+                  0.7,
               child: transactions.isEmpty
                   ? Column(
                       children: <Widget>[
