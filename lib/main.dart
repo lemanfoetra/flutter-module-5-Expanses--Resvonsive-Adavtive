@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+
 import './widgets/chart.dart';
 
 import './widgets/transaction_list.dart';
@@ -6,7 +8,12 @@ import './models/transaction_model.dart';
 import './widgets/add_transaction.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp, DeviceOrientation.portraitDown
+  ]);
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -117,12 +124,13 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+
             // Chart
+            // Note: 0.4 merupakan skala 40% dari total 100%
+            // 1. Ketinggian Total Layar Ponsel
+            // 2. ketinggian Status bar ponsel ( signal, baterai, dll)
+            // 3. ketinggian Appbar
             Container(
-              // Note: 0.4 merupakan skala 40% dari total 100%
-              // 1. Ketinggian Total Layar Ponsel
-              // 2. ketinggian Status bar ponsel ( signal, baterai, dll)
-              // 3. ketinggian Appbar
               height: (MediaQuery.of(context).size.height -
                       MediaQuery.of(context).padding.top -
                       appBar.preferredSize.height) *
