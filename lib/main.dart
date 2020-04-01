@@ -9,9 +9,8 @@ import './widgets/add_transaction.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp, DeviceOrientation.portraitDown
-  ]);
+  // SystemChrome.setPreferredOrientations(
+  //     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(MyApp());
 }
 
@@ -54,6 +53,8 @@ class _HomeState extends State<Home> {
     // TransactionModel(
     //     id: 't2', title: 'Kemeja Batik', amount: 10.12, date: DateTime.now()),
   ];
+
+  bool _showChart = false;
 
   List<TransactionModel> get _recentTransaction {
     return transactions.where((trx) {
@@ -124,21 +125,39 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-
-            // Chart
-            // Note: 0.4 merupakan skala 40% dari total 100%
-            // 1. Ketinggian Total Layar Ponsel
-            // 2. ketinggian Status bar ponsel ( signal, baterai, dll)
-            // 3. ketinggian Appbar
-            Container(
-              height: (MediaQuery.of(context).size.height -
-                      MediaQuery.of(context).padding.top -
-                      appBar.preferredSize.height) *
-                  0.3,
-              width: double.infinity,
-              child: Chart(_recentTransaction),
+            // SWITCH
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('Show Chart'),
+                Switch(
+                  value: _showChart,
+                  onChanged: (val) {
+                    setState(() {
+                      _showChart = val;
+                    });
+                  },
+                ),
+              ],
             ),
-            // End Chart
+            // END SWITCH
+
+            _showChart
+                // Chart
+                // Note: 0.4 merupakan skala 40% dari total 100%
+                // 1. Ketinggian Total Layar Ponsel
+                // 2. ketinggian Status bar ponsel ( signal, baterai, dll)
+                // 3. ketinggian Appbar
+                ? Container(
+                    height: (MediaQuery.of(context).size.height -
+                            MediaQuery.of(context).padding.top -
+                            appBar.preferredSize.height) *
+                        0.3,
+                    width: double.infinity,
+                    child: Chart(_recentTransaction),
+                  )
+                // End Chart
+                : Container(),
 
             // Transaction List
             Container(
