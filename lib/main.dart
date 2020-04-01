@@ -166,23 +166,28 @@ class _HomeState extends State<Home> {
                       appBar.preferredSize.height) *
                   0.7,
               child: transactions.isEmpty
-                  ? Column(
-                      children: <Widget>[
-                        Text(
-                          'No Data',
-                          style: Theme.of(context).textTheme.title,
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          width: 100,
-                          child: Image.asset(
-                            'assets/images/waiting.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ],
+                  ? LayoutBuilder(
+                      builder: (contex, contrains) {
+                        return Column(
+                          children: <Widget>[
+                            Text(
+                              'No Data',
+                              style: Theme.of(context).textTheme.title,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              height: contrains.maxHeight * 0.6,
+      
+                              child: Image.asset(
+                                'assets/images/waiting.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
                     )
                   : TransactionList(
                       transactions: transactions,
