@@ -9,8 +9,6 @@ import './widgets/add_transaction.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  // SystemChrome.setPreferredOrientations(
-  //     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(MyApp());
 }
 
@@ -47,12 +45,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final List<TransactionModel> transactions = [
-    // TransactionModel(
-    //     id: 't1', title: 'Sepatu Baru', amount: 15.45, date: DateTime.now()),
-    // TransactionModel(
-    //     id: 't2', title: 'Kemeja Batik', amount: 10.12, date: DateTime.now()),
-  ];
+  final List<TransactionModel> transactions = [];
 
   bool _showChart = false;
 
@@ -144,10 +137,6 @@ class _HomeState extends State<Home> {
 
             _showChart
                 // Chart
-                // Note: 0.4 merupakan skala 40% dari total 100%
-                // 1. Ketinggian Total Layar Ponsel
-                // 2. ketinggian Status bar ponsel ( signal, baterai, dll)
-                // 3. ketinggian Appbar
                 ? Container(
                     height: (MediaQuery.of(context).size.height -
                             MediaQuery.of(context).padding.top -
