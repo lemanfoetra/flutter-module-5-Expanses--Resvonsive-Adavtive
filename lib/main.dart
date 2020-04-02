@@ -93,6 +93,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final isLanscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
     final AppBar appBar = AppBar(
       title: Text(
         'Personal Expanses',
@@ -119,23 +122,25 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             // SWITCH
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text('Show Chart'),
-                Switch(
-                  value: _showChart,
-                  onChanged: (val) {
-                    setState(() {
-                      _showChart = val;
-                    });
-                  },
-                ),
-              ],
-            ),
+            if (isLanscape)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text('Show Chart'),
+                  Switch(
+                    value: _showChart,
+                    onChanged: (val) {
+                      setState(() {
+                        _showChart = val;
+                      });
+                    },
+                  ),
+                ],
+              ),
             // END SWITCH
 
-            _showChart
+
+            (_showChart || !isLanscape)
                 // Chart
                 ? Container(
                     height: (MediaQuery.of(context).size.height -
@@ -168,7 +173,6 @@ class _HomeState extends State<Home> {
                             ),
                             Container(
                               height: contrains.maxHeight * 0.6,
-      
                               child: Image.asset(
                                 'assets/images/waiting.png',
                                 fit: BoxFit.cover,
