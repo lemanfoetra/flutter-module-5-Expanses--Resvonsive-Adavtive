@@ -12,14 +12,11 @@ class AddTransaction extends StatefulWidget {
 }
 
 class _AddTransactionState extends State<AddTransaction> {
-
-
   final title = TextEditingController();
   final amount = TextEditingController();
   DateTime _timeSelected;
 
   void onSubmit() {
-
     if (amount.text.isEmpty || double.parse(amount.text) <= 0) {
       return;
     }
@@ -28,7 +25,6 @@ class _AddTransactionState extends State<AddTransaction> {
 
     Navigator.of(context).pop();
   }
-
 
   void pilihTanggal() {
     showDatePicker(
@@ -46,26 +42,28 @@ class _AddTransactionState extends State<AddTransaction> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      
-      child: Container(
-        padding: EdgeInsets.only(top: 10, right: 20, bottom: 10, left: 10),
+      child: SingleChildScrollView(
+        child: Container(
+        padding: EdgeInsets.only(
+          top: 10,
+          right: 20,
+          bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+          left: 10,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-
             TextField(
               decoration: InputDecoration(labelText: 'Title'),
               controller: title,
               keyboardType: TextInputType.text,
               onSubmitted: (str) => onSubmit,
             ),
-
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
               controller: amount,
               keyboardType: TextInputType.number,
             ),
-
             Container(
               padding: EdgeInsets.only(top: 20),
               child: Row(
@@ -89,7 +87,6 @@ class _AddTransactionState extends State<AddTransaction> {
                 ],
               ),
             ),
-
             RaisedButton(
               onPressed: () => onSubmit(),
               child: Text('Save'),
@@ -98,6 +95,7 @@ class _AddTransactionState extends State<AddTransaction> {
             ),
           ],
         ),
+      ),
       ),
     );
   }

@@ -78,6 +78,7 @@ class _HomeState extends State<Home> {
 
   void modalAddTransaction(BuildContext ctx) {
     showModalBottomSheet(
+      isScrollControlled: true, // Membiarkan modal melayang ketika keryboard aktif
       context: ctx,
       builder: (_) {
         return GestureDetector(
@@ -138,7 +139,6 @@ class _HomeState extends State<Home> {
                 ],
               ),
             // END SWITCH
-
 
             (_showChart || !isLanscape)
                 // Chart
