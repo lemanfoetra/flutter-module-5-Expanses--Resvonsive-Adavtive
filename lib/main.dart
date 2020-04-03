@@ -94,8 +94,11 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+
+    final mediaQuery = MediaQuery.of(context);
+
     final isLanscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+       mediaQuery.orientation == Orientation.landscape;
 
     final AppBar appBar = AppBar(
       title: Text(
@@ -143,8 +146,8 @@ class _HomeState extends State<Home> {
             (_showChart || !isLanscape)
                 // Chart
                 ? Container(
-                    height: (MediaQuery.of(context).size.height -
-                            MediaQuery.of(context).padding.top -
+                    height: (mediaQuery.size.height -
+                            mediaQuery.padding.top -
                             appBar.preferredSize.height) *
                         0.3,
                     width: double.infinity,
@@ -155,8 +158,8 @@ class _HomeState extends State<Home> {
 
             // Transaction List
             Container(
-              height: (MediaQuery.of(context).size.height -
-                      MediaQuery.of(context).padding.top -
+              height: (mediaQuery.size.height -
+                      mediaQuery.padding.top -
                       appBar.preferredSize.height) *
                   0.7,
               child: transactions.isEmpty
