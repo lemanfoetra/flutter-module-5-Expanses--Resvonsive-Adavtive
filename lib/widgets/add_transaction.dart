@@ -5,13 +5,45 @@ import 'package:intl/intl.dart';
 class AddTransaction extends StatefulWidget {
   final Function addFunction;
 
-  AddTransaction({this.addFunction});
+  AddTransaction({this.addFunction}){
+    print('Constructor AddTransaction');
+  }
 
   @override
-  _AddTransactionState createState() => _AddTransactionState();
+  _AddTransactionState createState() {
+    print('createState AddTransaction');
+    return _AddTransactionState();
+  }
 }
 
 class _AddTransactionState extends State<AddTransaction> {
+
+
+  _AddTransactionState(){
+    print('Constructor AddTransaction State');
+  }
+
+
+  @override
+  void initState() {
+    print('initState()');
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(AddTransaction oldWidget) {
+    print('didUpdateWidget()');
+    super.didUpdateWidget(oldWidget);
+  }
+
+
+  @override
+  void dispose() {
+    print('dispose()');
+    super.dispose();
+  }
+
+
   final title = TextEditingController();
   final amount = TextEditingController();
   DateTime _timeSelected;
