@@ -65,10 +65,12 @@ class _HomeState extends State<Home> {
 
     setState(() {
       transactions.add(addTrx);
+      print('add trx jalan');
     });
   }
 
   void _deleteTrx(String id) {
+    print('delete trx jalan $id');
     setState(() {
       transactions.removeWhere((trx) => trx.id == id);
     });

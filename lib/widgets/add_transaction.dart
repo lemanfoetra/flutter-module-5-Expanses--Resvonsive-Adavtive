@@ -5,13 +5,10 @@ import 'package:intl/intl.dart';
 class AddTransaction extends StatefulWidget {
   final Function addFunction;
 
-  AddTransaction({this.addFunction}){
-    print('Constructor AddTransaction');
-  }
+  AddTransaction({this.addFunction});
 
   @override
   _AddTransactionState createState() {
-    print('createState AddTransaction');
     return _AddTransactionState();
   }
 }
@@ -19,27 +16,22 @@ class AddTransaction extends StatefulWidget {
 class _AddTransactionState extends State<AddTransaction> {
 
 
-  _AddTransactionState(){
-    print('Constructor AddTransaction State');
-  }
+  _AddTransactionState();
 
 
   @override
   void initState() {
-    print('initState()');
     super.initState();
   }
 
   @override
   void didUpdateWidget(AddTransaction oldWidget) {
-    print('didUpdateWidget()');
     super.didUpdateWidget(oldWidget);
   }
 
 
   @override
   void dispose() {
-    print('dispose()');
     super.dispose();
   }
 
